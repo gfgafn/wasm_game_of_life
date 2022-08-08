@@ -2,6 +2,7 @@
 name = "wasm_game_of_life"
 version = "0.1.0"
 edition = "2021"
+rust-version = "1.60"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -11,7 +12,18 @@ edition = "2021"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
+web-sys = { version = "0.3.59", features = ["console"] }
 wasm-bindgen = { version = "0.2.82" }
+# The `console_error_panic_hook` crate provides better debugging of panics by
+# logging them with `console.error`. This is great for development, but requires
+# all the `std::fmt` and `std::panicking` infrastructure, so isn't great for
+# code size when deploying.
+console_error_panic_hook = { version = "0.1.7", optional = true }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3.32"
+
+[features]
+default = ["console_error_panic_hook"]
+# https://doc.rust-lang.org/cargo/reference/features.html#optional-dependencies
+console_error_panic_hook = ["dep:console_error_panic_hook"]
