@@ -9,4 +9,5 @@ edition = "2021"
 wasm-bindgen = { version = "0.2.82" }
 
 [lib]
-crate-type = ["cdylib", "rlib"]
+# https://rustwasm.github.io/docs/wasm-pack/tutorials/npm-browser-packages/template-deep-dive/cargo-toml.html#1-crate-type
+crate-type = ["cdylib"]
