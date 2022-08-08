@@ -119,5 +119,18 @@
 				"panel": "new"
 			}
 		},
+		{
+			"type": "shell",
+			"command": "wasm-pack test --chrome --headless",
+			"problemMatcher": [
+				"$rustc"
+			],
+			"group": "test",
+			"label": "wasm-pack test --chrome --headless",
+			"detail": "wasm-pack test --chrome --headless",
+			"presentation": {
+				"focus": true,
+			}
+		},
 	]
 }
