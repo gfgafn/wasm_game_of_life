@@ -18,14 +18,20 @@
             justify-content: center;
         }
 
-        button {
+        #play-pause {
             margin-bottom: 10px;
+        }
+
+        #fps {
+            white-space: pre;
+            font-family: monospace;
         }
     </style>
 </head>
 
 <body>
     <button id="play-pause"></button>
+    <div id="fps"></div>
     <canvas id="game-of-life-canvas"></canvas>
 </body>
 <script defer src="./index.js"></script>
