@@ -7,6 +7,7 @@ A game written with Rust and the WebAssembly.
 First you need to install [`wasm-pack`](https://rustwasm.github.io/wasm-pack/installer/)
 
 ## Compiles and hot-reloads for development
+
 ```shell
 cargo install cargo-watch
 ```

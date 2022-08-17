@@ -8,19 +8,23 @@ const DEAD_COLOR = '#FFFFFF';
 const ALIVE_COLOR = '#000000';
 
 // Construct the universe, and get its width and height.
-const universe = Universe.new();
+const universe = Universe.new(); 
 const width = universe.width();
 const height = universe.height();
 
 // Give the canvas room for all of our cells and a 1px border
 // around each of them.
-const canvas = document.getElementById('game-of-life-canvas');
+const canvas = document.getElementById('game-of-life-canvas') as HTMLCanvasElement;
 canvas.height = (CELL_SIZE + 1) * height + 1;
 canvas.width = (CELL_SIZE + 1) * width + 1;
 
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
 
 const fps = new (class {
+    fps: HTMLElement | null;
+    frames: number[];
+    lastFrameTimeStamp: DOMHighResTimeStamp;
+
     constructor() {
         this.fps = document.getElementById('fps');
         this.frames = [];
@@ -53,7 +57,7 @@ const fps = new (class {
         let average = sum / this.frames.length;
 
         // Render the statistics.
-        this.fps.textContent = `
+        this.fps!.textContent = `
 Frames per Second:
 latest = ${Math.round(fps)}
 avg of last 100 = ${Math.round(average)}
@@ -63,11 +67,11 @@ max of last 100 = ${Math.round(max)}
     }
 })();
 
-const getIndex = (row, column) => {
+const getIndex = (row:number, column:number) => {
     return row * width + column;
 };
 
-let animationId = null;
+let animationId: DOMHighResTimeStamp | null = null;
 
 const renderLoop = () => {
     fps.render();
@@ -149,7 +153,7 @@ const isPaused = () => {
     return animationId === null;
 };
 
-const playPauseButton = document.getElementById('play-pause');
+const playPauseButton = document.getElementById('play-pause') as HTMLElement;
 
 const play = () => {
     playPauseButton.textContent = '⏸';
@@ -158,7 +162,7 @@ const play = () => {
 
 const pause = () => {
     playPauseButton.textContent = '▶';
-    window.cancelAnimationFrame(animationId);
+    window.cancelAnimationFrame(animationId!);
     animationId = null;
 };
 

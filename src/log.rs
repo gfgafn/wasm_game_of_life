@@ -1,4 +1,4 @@
-// A macro to provide `println!(..)`-style syntax for `console.log` logging.
+/// A macro to provide `println!(..)`-style syntax for `console.log()` logging.
 #[macro_export]
 macro_rules! log {
     ( $( $t:tt )* ) => {

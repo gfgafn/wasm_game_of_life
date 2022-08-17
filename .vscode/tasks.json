@@ -1,136 +1,136 @@
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "npm",
-			"script": "install",
-			"path": "www",
-			"problemMatcher": [],
-			"label": "npm: install - www",
-			"detail": "install dependencies from package",
-			"presentation": {
-				"focus": true,
-				"group": "project dev"
-			}
-		},
-		{
-			"type": "npm",
-			"script": "dev",
-			"path": "www",
-			"problemMatcher": [],
-			"label": "npm: dev - www",
-			"detail": "npm install && webpack-dev-server",
-			"dependsOn": [
-				"npm: install - www"
-			],
-			"dependsOrder": "sequence",
-			"presentation": {
-				"focus": true,
-				"group": "project dev"
-			}
-		},
-		{
-			"type": "npm",
-			"script": "build",
-			"path": "www",
-			"group": "build",
-			"problemMatcher": [],
-			"label": "npm: build - www",
-			"detail": "webpack build",
-			"dependsOn": [
-				"npm: install - www"
-			],
-			"dependsOrder": "sequence",
-			"presentation": {
-				"focus": true,
-				"group": "project build"
-			}
-		},
-		{
-			"type": "shell",
-			"command": "wasm-pack build",
-			"problemMatcher": [
-				"$rustc"
-			],
-			"group": "build",
-			"label": "wasm-pack build",
-			"detail": "wasm-pack build",
-			"presentation": {
-				"focus": true,
-				"group": "project build"
-			}
-		},
-		{
-			"type": "shell",
-			"linux": {
-				"command": [
-					"cargo --list | grep 'watch' || cargo install cargo-watch",
-					"&&",
-					"cargo watch -c -w src/ -s 'wasm-pack build'"
-				]
-			},
-			"windows": {
-				"command": [
-					"cargo --list | findstr 'watch' || cargo install cargo-watch",
-					"&&",
-					"cargo watch -c -w src/ -s 'wasm-pack build'"
-				]
-			},
-			"label": "cargo-watch",
-			"detail": "cargo watch -c -w src/ -s 'wasm-pack build'",
-			"problemMatcher": [
-				"$rustc"
-			],
-			"presentation": {
-				"focus": true,
-				"group": "project dev"
-			}
-		},
-		{
-			"type": "shell",
-			"label": "project dev",
-			"dependsOn": [
-				"cargo-watch",
-				"npm: dev - www"
-			],
-			"detail": "cargo-watch && npm: dev - www",
-			"problemMatcher": [
-				"$rustc"
-			],
-			"presentation": {
-				"focus": true,
-				"panel": "new"
-			}
-		},
-		{
-			"type": "shell",
-			"label": "project build",
-			"dependsOn": [
-				"wasm-pack build",
-				"npm: build - www"
-			],
-			"dependsOrder": "sequence",
-			"problemMatcher": [
-				"$rustc"
-			],
-			"detail": "wasm-pack build && npm: build - www",
-			"presentation": {
-				"focus": true,
-				"panel": "new"
-			}
-		},
-		{
-			"type": "shell",
-			"command": "wasm-pack test --chrome --headless",
-			"problemMatcher": [
-				"$rustc"
-			],
-			"group": "test",
-			"label": "wasm-pack test --chrome --headless",
-			"detail": "wasm-pack test --chrome --headless",
-			"presentation": {
-				"focus": true,
-			}
-		},
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "install",
+            "path": "www",
+            "problemMatcher": [],
+            "label": "npm: install - www",
+            "detail": "install dependencies from package",
+            "presentation": {
+                "focus": true,
+                "group": "project dev"
+            }
+        },
+        {
+            "type": "npm",
+            "script": "dev",
+            "path": "www",
+            "problemMatcher": [],
+            "label": "npm: dev - www",
+            "detail": "npm install && webpack-dev-server",
+            "dependsOn": [
+                "npm: install - www"
+            ],
+            "dependsOrder": "sequence",
+            "presentation": {
+                "focus": true,
+                "group": "project dev"
+            }
+        },
+        {
+            "type": "npm",
+            "script": "build:prod",
+            "path": "www",
+            "group": "build",
+            "problemMatcher": [],
+            "label": "npm: build:prod - www",
+            "detail": "webpack build:prod",
+            "dependsOn": [
+                "npm: install - www"
+            ],
+            "dependsOrder": "sequence",
+            "presentation": {
+                "focus": true,
+                "group": "project build"
+            }
+        },
+        {
+            "type": "shell",
+            "command": "wasm-pack build",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "build",
+            "label": "wasm-pack build",
+            "detail": "wasm-pack build",
+            "presentation": {
+                "focus": true,
+                "group": "project build"
+            }
+        },
+        {
+            "type": "shell",
+            "linux": {
+                "command": [
+                    "cargo --list | grep 'watch' || cargo install cargo-watch",
+                    "&&",
+                    "cargo watch -c -w src/ -s 'wasm-pack build'"
+                ]
+            },
+            "windows": {
+                "command": [
+                    "cargo --list | findstr 'watch' || cargo install cargo-watch",
+                    "&&",
+                    "cargo watch -c -w src/ -s 'wasm-pack build'"
+                ]
+            },
+            "label": "cargo-watch",
+            "detail": "cargo watch -c -w src/ -s 'wasm-pack build'",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "presentation": {
+                "focus": true,
+                "group": "project dev"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "project dev",
+            "dependsOn": [
+                "cargo-watch",
+                "npm: dev - www"
+            ],
+            "detail": "cargo-watch && npm: dev - www",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "presentation": {
+                "focus": true,
+                "panel": "new"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "project build:prod",
+            "dependsOn": [
+                "wasm-pack build",
+                "npm: build:prod - www"
+            ],
+            "dependsOrder": "sequence",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "detail": "wasm-pack build && npm: build:prod - www",
+            "presentation": {
+                "focus": true,
+                "panel": "new"
+            }
+        },
+        {
+            "type": "shell",
+            "command": "wasm-pack test --chrome --headless",
+            "problemMatcher": [
+                "$rustc"
+            ],
+            "group": "test",
+            "label": "wasm-pack test --chrome --headless",
+            "detail": "wasm-pack test --chrome --headless",
+            "presentation": {
+                "focus": true,
+            }
+        },
+    ]
 }

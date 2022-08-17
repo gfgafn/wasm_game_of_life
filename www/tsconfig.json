@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "outDir": "./public/",
+        "sourceMap": true,
+        "module": "ESNext",
+        "target": "ES2015",
+        "moduleResolution": "Node",
+        "strict": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitAny": true,
+        "alwaysStrict": true,
+        "esModuleInterop": true,
+        "allowJs": true
+    },
+    "include": [
+        "src/**/*",
+    ]
+}
