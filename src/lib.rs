@@ -1,7 +1,21 @@
+#[cfg(target_arch = "wasm32")]
 use wasm_bindgen::prelude::*;
 
+#[cfg(target_arch = "wasm32")]
 mod log;
+#[cfg(target_arch = "wasm32")]
 mod utils;
+
+#[cfg_attr(target_arch = "wasm32", wasm_bindgen(start, js_name = wasmInitConfig))]
+pub fn main() {
+    #[cfg(target_arch = "wasm32")]
+    {
+        utils::set_panic_hook();
+
+        // use time profiling to analyze performance
+        // let _timer = Timer::new("Universe::tick");
+    }
+}
 
 pub struct Timer<'a> {
     name: &'a str,
@@ -38,6 +52,7 @@ impl Cell {
 }
 
 #[wasm_bindgen]
+#[derive(Default)]
 pub struct Universe {
     width: u32,
     height: u32,
@@ -126,8 +141,6 @@ impl Universe {
     }
 
     pub fn tick(&mut self) {
-        // let _timer = Timer::new("Universe::tick");
-
         let mut next = self.cells.clone();
 
         (0..self.height).for_each(|row| {
@@ -160,9 +173,8 @@ impl Universe {
         self.cells = next;
     }
 
-    pub fn new() -> Universe {
-        utils::set_panic_hook();
-
+    #[wasm_bindgen(constructor)]
+    pub fn new() -> Self {
         let width = 64;
         let height = 64;
 
@@ -176,7 +188,7 @@ impl Universe {
             })
             .collect();
 
-        Universe {
+        Self {
             width,
             height,
             cells,
@@ -218,7 +230,7 @@ impl fmt::Display for Universe {
                 let symbol = if cell == Cell::Dead { '◻' } else { '◼' };
                 write!(f, "{}", symbol)?;
             }
-            write!(f, "\n")?;
+            writeln!(f)?;
         }
 
         Ok(())

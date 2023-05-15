@@ -1,6 +1,7 @@
-import { Universe, Cell } from 'wasm_game_of_life';
-
+import { Universe, Cell, wasmInitConfig } from 'wasm_game_of_life';
 import { memory } from 'wasm_game_of_life/wasm_game_of_life_bg.wasm';
+
+wasmInitConfig();
 
 const CELL_SIZE = 5; // px
 const GRID_COLOR = '#CCCCCC';
@@ -8,7 +9,7 @@ const DEAD_COLOR = '#FFFFFF';
 const ALIVE_COLOR = '#000000';
 
 // Construct the universe, and get its width and height.
-const universe = Universe.new(); 
+const universe = new Universe();
 const width = universe.width();
 const height = universe.height();
 
@@ -67,7 +68,7 @@ max of last 100 = ${Math.round(max)}
     }
 })();
 
-const getIndex = (row:number, column:number) => {
+const getIndex = (row: number, column: number) => {
     return row * width + column;
 };
 
