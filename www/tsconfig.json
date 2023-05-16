@@ -3,7 +3,7 @@
         "outDir": "./public/",
         "sourceMap": true,
         "module": "ESNext",
-        "target": "ES2015",
+        "target": "ES2017",
         "moduleResolution": "Node",
         "strict": true,
         "strictNullChecks": true,
@@ -13,7 +13,11 @@
         "noImplicitAny": true,
         "alwaysStrict": true,
         "esModuleInterop": true,
-        "allowJs": true
+        "allowJs": true,
+        "typeRoots": [
+            "./node_modules/@types",
+            "./node_modules/@webgpu/types",
+        ],
     },
     "include": [
         "src/**/*",

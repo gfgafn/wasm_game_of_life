@@ -16,12 +16,13 @@
         "wasm_game_of_life": "file:../pkg"
     },
     "devDependencies": {
+        "@webgpu/types": "^0.1.32",
+        "clean-terminal-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^11.0.0",
         "ts-loader": "^9.3.1",
         "typescript": "4.7.4",
         "webpack": "5.82.1",
         "webpack-cli": "^4.10.0",
-        "webpack-dev-server": "^4.9.3",
-        "clean-terminal-webpack-plugin": "^3.0.0",
-        "copy-webpack-plugin": "^11.0.0"
+        "webpack-dev-server": "^4.9.3"
     }
 }

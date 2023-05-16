@@ -26,10 +26,14 @@ module.exports = {
                 loader: 'ts-loader',
                 exclude: ['/node_modules/'],
             },
+            {
+                test: /\.wgsl$/,
+                type: 'asset/source',
+            },
         ],
     },
     resolve: {
-        extensions: ['.ts', '.js', '.wasm'],
+        extensions: ['.ts', '.js', '.wasm', '.wgsl', '...'],
     },
     devServer: {
         static: {
@@ -45,5 +49,6 @@ module.exports = {
     },
     experiments: {
         asyncWebAssembly: true,
+        topLevelAwait: true,
     },
 };
